@@ -1,0 +1,1 @@
+(function($) {    $(document).ready(function() {            $('.twitterHovercard').on('hover', function(){            var handle = $(this).attr('data-handle');                                });        });})(jQuery)
