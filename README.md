@@ -1,6 +1,8 @@
 Twitter Profile Linker
 ====================
 
-Generates links automatically, in a WordPress post, to Twitter profiles.
+Automatically generate links, to Twitter profiles, on a WordPress post publish or update.
 
-The handle must be annotated with @.
+The handles that need to be linked need to have an @ character in front of them.
+
+Ability to show a Twitter hovercard of each linked handle.

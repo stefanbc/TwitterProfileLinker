@@ -34,15 +34,15 @@
         if($hovercards){
             // Register the styles
             wp_register_style('twitterHovercards_font', 'https://fonts.googleapis.com/css?family=Roboto:300,400');
-        	wp_register_style('twitterHovercards_css', plugins_url('hovercards.css', __FILE__ ));
-        	// Register the script
-        	wp_register_script('twitterHovercards_script', plugins_url('hovercards.js' , __FILE__ ));
-    
-        	// Enqueue styles
-        	wp_enqueue_style('twitterHovercards_font');
-        	wp_enqueue_style('twitterHovercards_css');
-        	// Enqueue the script
-        	wp_enqueue_script('twitterHovercards_script');
+            wp_register_style('twitterHovercards_css', plugins_url('hovercards.css', __FILE__ ));
+            // Register the script
+            wp_register_script('twitterHovercards_script', plugins_url('hovercards.js' , __FILE__ ));
+            
+            // Enqueue styles
+            wp_enqueue_style('twitterHovercards_font');
+            wp_enqueue_style('twitterHovercards_css');
+            // Enqueue the script
+            wp_enqueue_script('twitterHovercards_script');
         }
     }
     // Add styles to admin area
