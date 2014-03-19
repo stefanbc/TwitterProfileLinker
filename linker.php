@@ -2,8 +2,8 @@
     /*
         Plugin Name: Twitter Profile Linker
         Plugin URI: https://github.com/stefanbc/TwitterProfileLinker
-        Description: Generates links automatically, in a WordPress post, to Twitter profiles.
-        Version: 0.1
+        Description: Automatically generate links, to Twitter profiles, when a WordPress post is published or updated.
+        Version: 0.2
         Author: Stefan Cosma
         Author URI: http://coderbits.com/stefanbc
         License: GPLv2 or later
