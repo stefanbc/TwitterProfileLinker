@@ -50,7 +50,7 @@
 
     // This function replaces all the handles annotated with an @ with a link to profile on Twitter
     function linker_action_publish_post($post_ID) {
-    
+        
         // Get the post content
         $content_post = get_post($post_ID);
         $content = $content_post->post_content;
@@ -64,26 +64,28 @@
                 $handle = substr($user, 1);
                 // Check if hovercards are active
                 $hovercards = get_option('twitterHovercards');
-                // If the option is ticked then we add a wrapper to the link
-                if($hovercards){
-                    // Create the link
-                    $handleOutput = "<a href='https://twitter.com/" . $handle . "' title='" . $handle . "' class='twitterHovercard' data-handle='" . $handle . "' target='_blank'>@" . $handle . "</a>";
-                } else {
-                    // Create the link
-                    $handleOutput = "<a href='https://twitter.com/" . $handle . "' title='" . $handle . "'>@" . $handle . "</a> ";
-                }
+                // If the option is ticked then we add a class and data from js to the link
+                $hovercardsOutput = ($hovercards) ? "class='twitterHovercard' data-handle='" . $handle . "'" : "";
+                // Create the link
+                $handleOutput = "<a href='https://twitter.com/" . $handle . "' " . $hovercardsOutput . " title='" . $handle . "' target='_blank'>@" . $handle . "</a> ";
                 // Replace in content
                 $content = preg_replace('/@' . $handle . '/i', $handleOutput, $content);
             }
         }
         
-        // Update post
-        $updatedPost = array(
-            'ID'           => $post_ID,
-            'post_content' => $content
-        );
-        // Update the post into the database
-        $updated = wp_update_post($updatedPost);
+        if (!wp_is_post_revision($post_ID)){
+            // Unhook this function so it doesn't loop infinitely
+            remove_action('publish_post', 'linker_action_publish_post');
+            // Update post
+            $updatedPost = array(
+                'ID'           => $post_ID,
+                'post_content' => $content
+            );
+            // Update the post
+            wp_update_post($updatedPost);
+            // Re-hook this function
+            add_action('publish_post', 'linker_action_publish_post');
+        }
     }
     // Add the action on post publish
     add_action('publish_post', 'linker_action_publish_post');
