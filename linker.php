@@ -36,7 +36,7 @@
             wp_register_style('twitterHovercards_font', 'https://fonts.googleapis.com/css?family=Roboto:300,400');
             wp_register_style('twitterHovercards_css', plugins_url('hovercards.css', __FILE__ ));
             // Register the script
-            wp_register_script('twitterHovercards_script', plugins_url('hovercards.js' , __FILE__ ));
+            wp_register_script('twitterHovercards_script', plugins_url('hovercards.js' , __FILE__ ), array('jquery'));
             
             // Enqueue styles
             wp_enqueue_style('twitterHovercards_font');
