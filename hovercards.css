@@ -38,7 +38,7 @@
 .hovercardWrapper {
     display: none;
     position: absolute;
-    z-index: 999;
+    z-index: 10;
     min-height: 260px;
     width: 520px;
     background: #444;
