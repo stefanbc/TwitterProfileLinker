@@ -20,6 +20,20 @@
     text-align: center;
     text-shadow: 0 1px 1px rgba(17,17,17,0.8);
     color: #fff;
+    -webkit-box-shadow: 0 0 10px rgba(17,17,17,0.5);
+    -moz-box-shadow: 0 0 10px rgba(17,17,17,0.5);
+    box-shadow: 0 0 10px rgba(17,17,17,0.5);
+}
+.hovercardOverlay {
+    position: absolute;
+    width: 520px;
+    height: 200px;
+    bottom: 0;
+    background-size: 100%;
+    background-image: -webkit-linear-gradient(transparent 0%,rgba(17,17,17,0.55) 100%);
+    background-image: -moz-linear-gradient(transparent 0%,rgba(17,17,17,0.55) 100%);
+    background-image: -o-linear-gradient(transparent 0%,rgba(17,17,17,0.55) 100%);
+    background-image: linear-gradient(transparent 0%,rgba(17,17,17,0.55) 100%);
 }
 .hovercardInner {
     width: 85%;
@@ -60,6 +74,7 @@
     padding-top: 1px;
     display: block;
     color: #fff;
+    margin-bottom: 0;
 }
 .hovercardBio {
     word-break: break-word;
@@ -68,6 +83,7 @@
     line-height: 18px;
     text-align: center;
     padding-bottom: 4px;
+    margin-bottom: 0;
 }
 .hovercardLocation {
     position: relative;
@@ -80,6 +96,7 @@
     -ms-text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
+    margin-bottom: 0;
 }
 .hovercardURL {
     color: #fff;
