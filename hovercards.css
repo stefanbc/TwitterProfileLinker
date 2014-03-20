@@ -15,11 +15,13 @@
 }
 .topMiddle {
     top: -270px;
-    left: -225px;
+    left: 50%;
+    margin-left: -260px;
 }
 .bottomMiddle {
     bottom: -270px;
-    left: -225px;
+    left: 50%;
+    margin-left: -260px;
 }
 .topRight {
     top: -270px;
