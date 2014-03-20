@@ -3,7 +3,7 @@
         Plugin Name: Twitter Profile Linker
         Plugin URI: https://github.com/stefanbc/TwitterProfileLinker
         Description: Automatically generate links, to Twitter profiles, when a WordPress post is published or updated.
-        Version: 0.2
+        Version: 0.5
         Author: Stefan Cosma
         Author URI: http://coderbits.com/stefanbc
         License: GPLv2 or later
@@ -56,7 +56,7 @@
         $content = $content_post->post_content;
         
         // First we check if we already applied the links
-        $checkLinker = preg_match('/linkerElement/', $content);
+        $checkLinker = preg_match('/linkerElementWrapper/', $content);
         
         if (!$checkLinker) {
             // Get all the handles using the pattern
@@ -71,7 +71,7 @@
                     // If the option is ticked then we add a class and data from js to the link
                     $hovercardsOutput = ($hovercards) ? "class='twitterHovercard linkerElement' data-handle='" . $handle . "'" : "class='linkerElement'";
                     // Create the link
-                    $handleOutput = "<a href='https://twitter.com/" . $handle . "' " . $hovercardsOutput . " title='" . $handle . "' target='_blank'>@" . $handle . "</a> ";
+                    $handleOutput = "<span class='linkerElementWrapper'><a href='https://twitter.com/" . $handle . "' " . $hovercardsOutput . " title='" . $handle . "' target='_blank'>@" . $handle . "</a></span>";
                     // Replace in content
                     $content = preg_replace('/@' . $handle . '/i', $handleOutput, $content);
                 }
