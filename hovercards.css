@@ -1,0 +1,22 @@
+.linkerElementWrapper {
+    position: relative;
+}
+.hovercardWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 260px;
+    width: 260px;
+    background: #444;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    -webkit-border-radius: 2px 2px 0 0;
+    -moz-border-radius: 2px 2px 0 0;
+    -ms-border-radius: 2px 2px 0 0;
+    -o-border-radius: 2px 2px 0 0;
+    border-radius: 2px 2px 0 0;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(17,17,17,0.8);
+    color: #fff;
+}
