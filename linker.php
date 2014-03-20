@@ -54,37 +54,42 @@
         // Get the post content
         $content_post = get_post($post_ID);
         $content = $content_post->post_content;
-
-        // Get all the handles using the pattern
-        preg_match_all('/(?<!\w)@\w+/', $content, $matches);
-
-        foreach($matches as $match){
-            foreach($match as $user) {
-                // Get the array value minus the @
-                $handle = substr($user, 1);
-                // Check if hovercards are active
-                $hovercards = get_option('twitterHovercards');
-                // If the option is ticked then we add a class and data from js to the link
-                $hovercardsOutput = ($hovercards) ? "class='twitterHovercard' data-handle='" . $handle . "'" : "";
-                // Create the link
-                $handleOutput = "<a href='https://twitter.com/" . $handle . "' " . $hovercardsOutput . " title='" . $handle . "' target='_blank'>@" . $handle . "</a> ";
-                // Replace in content
-                $content = preg_replace('/@' . $handle . '/i', $handleOutput, $content);
-            }
-        }
         
-        if (!wp_is_post_revision($post_ID)){
-            // Unhook this function so it doesn't loop infinitely
-            remove_action('publish_post', 'linker_action_publish_post');
-            // Update post
-            $updatedPost = array(
-                'ID'           => $post_ID,
-                'post_content' => $content
-            );
-            // Update the post
-            wp_update_post($updatedPost);
-            // Re-hook this function
-            add_action('publish_post', 'linker_action_publish_post');
+        // First we check if we already applied the links
+        $checkLinker = preg_match('/linkerElement/', $content);
+        
+        if (!$checkLinker) {
+            // Get all the handles using the pattern
+            preg_match_all('/(?<!\w)@\w+/', $content, $matches);
+    
+            foreach($matches as $match){
+                foreach($match as $user) {
+                    // Get the array value minus the @
+                    $handle = substr($user, 1);
+                    // Check if hovercards are active
+                    $hovercards = get_option('twitterHovercards');
+                    // If the option is ticked then we add a class and data from js to the link
+                    $hovercardsOutput = ($hovercards) ? "class='twitterHovercard linkerElement' data-handle='" . $handle . "'" : "class='linkerElement'";
+                    // Create the link
+                    $handleOutput = "<a href='https://twitter.com/" . $handle . "' " . $hovercardsOutput . " title='" . $handle . "' target='_blank'>@" . $handle . "</a> ";
+                    // Replace in content
+                    $content = preg_replace('/@' . $handle . '/i', $handleOutput, $content);
+                }
+            }
+            
+            if (!wp_is_post_revision($post_ID)){
+                // Unhook this function so it doesn't loop infinitely
+                remove_action('publish_post', 'linker_action_publish_post');
+                // Update post
+                $updatedPost = array(
+                    'ID'           => $post_ID,
+                    'post_content' => $content
+                );
+                // Update the post
+                wp_update_post($updatedPost);
+                // Re-hook this function
+                add_action('publish_post', 'linker_action_publish_post');
+            }
         }
     }
     // Add the action on post publish
