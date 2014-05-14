@@ -6,3 +6,5 @@ Automatically generate links, to Twitter profiles, when a WordPress post is publ
 The handles need to have an @ character in front of them.
 
 Ability to show a Twitter hovercard of each linked handle.
+
+Required: your own twitter api token https://dev.twitter.com/apps/ 
